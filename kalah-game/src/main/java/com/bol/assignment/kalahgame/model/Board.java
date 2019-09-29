@@ -1,12 +1,11 @@
 package com.bol.assignment.kalahgame.model;
 
-import com.bol.assignment.kalahgame.enums.State;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.bol.assignment.kalahgame.enums.State.*;
+import static com.bol.assignment.kalahgame.model.State.*;
 
 @Slf4j
 @Getter

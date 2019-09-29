@@ -1,4 +1,4 @@
-package com.bol.assignment.kalahgame.enums;
+package com.bol.assignment.kalahgame.model;
 
 import lombok.Getter;
 
