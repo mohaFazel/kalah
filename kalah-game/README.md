@@ -7,7 +7,8 @@ You can also play it online [here](https://www.coolmathgames.com/0-mancala) to u
 
 There is also a brief description of those rules below:
 
-### Kalah Rules
+## Kalah Rules
+
 Each of the two players has ​**​six pits​** ​in front of him/her. To the right of the six pits, each player has a larger pit, his Kalah or house.
 
 At the start of the game, six stones are put in each pit.
@@ -22,9 +23,11 @@ The game is over as soon as one of the sides run out of stones. The player who s
 
 
 ## Build
+
 You can simply build the project using `mvn clean install`
 
 ## Run
+
 Also the project can run using `mvn spring-boot:run`
 
 After run the project all the endpoints can be find in the url below:
