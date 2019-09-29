@@ -5,8 +5,8 @@ import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import static com.bol.assignment.kalahgame.enums.State.PLAYER1_TURN;
-import static com.bol.assignment.kalahgame.enums.State.PLAYER2_TURN;
+import static com.bol.assignment.kalahgame.model.State.PLAYER1_TURN;
+import static com.bol.assignment.kalahgame.model.State.PLAYER2_TURN;
 import static com.bol.assignment.kalahgame.model.Board.*;
 import static org.junit.Assert.*;
 
@@ -21,49 +21,49 @@ public class PitTest {
     }
 
     @Test
-    public void isOpponentHomeTest1() {
+    public void isOpponentHomeTesWhenPlayer1() {
         Pit pit = new Pit(7, INITIAL_STONE_HOME, PLAYER_1);
         assertTrue(pit.isOpponentHome(PLAYER2_TURN));
     }
 
     @Test
-    public void isOpponentHomeTest2() {
+    public void isOpponentHomeTestWhenPlayer2() {
         Pit pit = new Pit(11, INITIAL_STONE_PIT, PLAYER_2);
         assertFalse(pit.isOpponentHome(PLAYER2_TURN));
     }
 
     @Test
-    public void isNotHomeTest1() {
+    public void isNotHomeTestWhenPlayer1() {
         Pit pit = new Pit(3, INITIAL_STONE_PIT, PLAYER_1);
         assertTrue(pit.isNotHome());
     }
 
     @Test
-    public void isNotHomeTest2() {
+    public void isNotHomeTestWhenPlayer2() {
         Pit pit = new Pit(14, INITIAL_STONE_HOME, PLAYER_2);
         assertFalse(pit.isNotHome());
     }
 
     @Test
-    public void isForCurrentPlayerTest1() {
+    public void isForCurrentPlayerTestWhenPlayer1True() {
         Pit pit = new Pit(2, INITIAL_STONE_PIT, PLAYER_1);
         assertTrue(pit.isForCurrentPlayer(PLAYER1_TURN));
     }
 
     @Test
-    public void isForCurrentPlayerTest2() {
+    public void isForCurrentPlayerTestWhenPlayer2False() {
         Pit pit = new Pit(5, INITIAL_STONE_PIT, PLAYER_1);
         assertFalse(pit.isForCurrentPlayer(PLAYER2_TURN));
     }
 
     @Test
-    public void isPlayerHomeTest1() {
+    public void isPlayerHomeTestWhenPlayer1True() {
         Pit pit = new Pit(7, INITIAL_STONE_HOME, PLAYER_2);
         assertTrue(pit.isPlayerHome(PLAYER_1));
     }
 
     @Test
-    public void isPlayerHomeTest2() {
+    public void isPlayerHomeTestWhenPlayer2False() {
         Pit pit = new Pit(7, INITIAL_STONE_HOME, PLAYER_2);
         assertFalse(pit.isPlayerHome(PLAYER_2));
     }

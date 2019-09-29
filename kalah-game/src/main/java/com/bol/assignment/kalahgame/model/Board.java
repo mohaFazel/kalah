@@ -1,6 +1,8 @@
 package com.bol.assignment.kalahgame.model;
 
+import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import java.util.HashMap;
 import java.util.Map;
@@ -15,12 +17,14 @@ public class Board {
     static final int PLAYER_2 = 2;
     static final int INITIAL_STONE_PIT = 6;
     public static final int INITIAL_STONE_HOME = 0;
-    private static final int PIT_START_INDEX = 1;
+    static final int PIT_START_INDEX = 1;
     private static final int PIT_END_INDEX = 14;
     public static final int PLAYER1_HOME = 7;
     static final int PLAYER2_HOME = 14;
 
+    @Setter(AccessLevel.PACKAGE)
     private State state;
+
     private Map<Integer, Pit> pits;
     private String winner;
 
@@ -29,7 +33,7 @@ public class Board {
         this.pits = initializePits();
     }
 
-    private Map<Integer, Pit> initializePits() {
+    Map<Integer, Pit> initializePits() {
         Map <Integer, Pit> initPits = new HashMap<>();
         for (int i = PIT_START_INDEX; i < PLAYER1_HOME; i++) {
             Pit pit = new Pit(i, INITIAL_STONE_PIT, PLAYER_1);
@@ -53,7 +57,7 @@ public class Board {
 
     Pit getPlayersHome(Pit pit) {
         int playersHomeId;
-        if (pit.getPlayer_id().equals(PLAYER_1)) {
+        if (pit.getPlayerId().equals(PLAYER_1)) {
             playersHomeId = PLAYER1_HOME;
         } else {
             playersHomeId = PLAYER2_HOME;
@@ -100,7 +104,7 @@ public class Board {
         updateState(lastPit);
     }
 
-    private Pit moveStones(Pit pit) {
+    Pit moveStones(Pit pit) {
         Integer stonesToPlay = pit.getNumberOfStones();
         pit.setNumberOfStones(0);
         while (stonesToPlay > 0) {
@@ -113,11 +117,11 @@ public class Board {
         return pit;
     }
 
-    private boolean checkBonus(Pit pit) {
+    boolean checkBonus(Pit pit) {
         return pit.isNotHome() && pit.isForCurrentPlayer(this.state) && pit.getNumberOfStones() == 1;
     }
 
-    private void addRewards(Pit pit) {
+    void addRewards(Pit pit) {
         Pit otherPlayerPit = getOtherPlayersPit(pit);
         if (otherPlayerPit.getNumberOfStones() > 0) {
             Pit playersHome = getPlayersHome(pit);
@@ -130,12 +134,12 @@ public class Board {
         }
     }
 
-    private void updateState(Pit lastPit) {
+    void updateState(Pit lastPit) {
         Integer player1StoneCount = getPlayerStoneCount(PLAYER_1);
         Integer player2StoneCount = getPlayerStoneCount(PLAYER_2);
         if (player1StoneCount == 0 || player2StoneCount == 0) {
             int player1Score = pits.get(PLAYER1_HOME).getNumberOfStones() + player1StoneCount;
-            int player2Score = pits.get(PLAYER2_HOME).getNumberOfStones() + player1StoneCount;
+            int player2Score = pits.get(PLAYER2_HOME).getNumberOfStones() + player2StoneCount;
             this.state = FINISHED;
             if(player1Score > player2Score) {
                 this.winner = "PLAYER 1";

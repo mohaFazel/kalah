@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.bol.assignment.kalahgame.enums.State.*;
+import static com.bol.assignment.kalahgame.model.State.*;
 
 @Service
 public class KalahServiceImpl implements KalahService {
@@ -27,24 +27,19 @@ public class KalahServiceImpl implements KalahService {
     public MoveResponse move(String gameId, int pitId) {
         Kalah kalah = cache.get(gameId);
         if (kalah == null) {
-            return new MoveResponse(true, "There is no Kalah game with the id: " + gameId, kalah);
+            return new MoveResponse(true, "There is no Kalah game with the id: ".concat(gameId), kalah);
         }
-
         Board board = kalah.getBoard();
-
         MoveResponse response = board.isValidMove(pitId);
         if (response.isError()) {
             response.setKalah(kalah);
             return response;
         }
-
         board.updateKalah(pitId);
-
         board.printBoard();
         if (board.getState().equals(FINISHED)) {
             cache.remove(kalah.getId());
         }
-
         response.setKalah(kalah);
         return response;
     }
