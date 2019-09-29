@@ -1,0 +1,42 @@
+<div
+  class="container text-center mt-5"
+  *ngIf="!board.status && board.state !== 'Finish'"
+>
+  <a class="btn btn-primary text-white" (click)="startGame()">Start</a>
+</div>
+<div class="container mt-5" *ngIf="board.status && board.state !== 'Finish'">
+  <div class="row">
+    <div class="col-2 bg-primary text-center">
+      <a (click)="move(item)">{{ board.status[14] }}</a>
+    </div>
+    <div class="col-8">
+      <div class="row">
+        <div
+          class="col-2 border text-center"
+          *ngFor="let item of [13, 12, 11, 10, 9, 8]"
+        >
+          <a (click)="move(item)">{{ board.status[item] }}</a>
+        </div>
+      </div>
+      <div class="row">
+        <div
+          class="col-2 border text-center"
+          *ngFor="let item of [1, 2, 3, 4, 5, 6]"
+        >
+          <a (click)="move(item)">{{ board.status[item] }}</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-2 bg-success text-center">
+      <a (click)="move(item)">{{ board.status[7] }}</a>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col"></div>
+  <div class="col text-center mt-5">
+    <div>{{ board.state }}</div>
+    <div>{{ board.winner }}</div>
+  </div>
+  <div class="col"></div>
+</div>

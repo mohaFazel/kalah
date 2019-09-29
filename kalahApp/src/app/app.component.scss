@@ -1,0 +1,12 @@
+.col-2 {
+  cursor: pointer;
+}
+
+.bg-primary,
+.bg-success {
+  display: flex;
+  justify-content: center;
+  a {
+    align-self: center;
+  }
+}
